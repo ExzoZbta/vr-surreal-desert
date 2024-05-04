@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="https://glitch.com/favicon.ico" />
+    <title>My Title goes here.</title>
+    <link rel="stylesheet" href="/style.css" />
+    <script src="/script.js" defer></script>
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <main>
+      <a-scene>
+        <a-assets>
+          <a-asset-item>
+            <audio
+              id="ambience"
+              src="https://cdn.glitch.global/206dce2d-9b78-4ee7-bd05-e534a8f85f38/ambience.mp3"
+              preload="auto"
+            ></audio>
+          </a-asset-item>
+          <!--    desert assets        -->
+
+          <a-asset-item
+            id="desert1"
+            src="https://cdn.glitch.global/206dce2d-9b78-4ee7-bd05-e534a8f85f38/desert2.glb"
+          >
+          </a-asset-item>
+
+          <!--    assets in sky        -->
+
+          <a-asset-item>
+            <img
+              id="sky"
+              src="https://cdn.glitch.global/206dce2d-9b78-4ee7-bd05-e534a8f85f38/sky3.jpeg"
+            />
+          </a-asset-item>
+
+          <a-asset-item
+            id="planet"
+            src="https://cdn.glitch.global/206dce2d-9b78-4ee7-bd05-e534a8f85f38/planet.glb"
+          >
+          </a-asset-item>
+        </a-assets>
+
+        <!--     hand assets     -->
+        <a-asset-item
+          id="darwin"
+          src="https://cdn.glitch.global/206dce2d-9b78-4ee7-bd05-e534a8f85f38/darwin-hand.glb"
+        >
+        </a-asset-item>
+        <a-asset-item
+          id="jordan"
+          src="https://cdn.glitch.global/206dce2d-9b78-4ee7-bd05-e534a8f85f38/jordan-hand2.glb"
+        >
+        </a-asset-item>
+        <a-asset-item
+          id="john"
+          src="https://cdn.glitch.global/206dce2d-9b78-4ee7-bd05-e534a8f85f38/john-hand2.glb"
+        >
+        </a-asset-item>
+        <a-asset-item
+          id="richard-hands2"
+          src="https://cdn.glitch.global/206dce2d-9b78-4ee7-bd05-e534a8f85f38/richard-hands2.glb"
+        >
+        </a-asset-item>
+        <a-asset-item
+          id="ikea-hand"
+          src="https://cdn.glitch.global/206dce2d-9b78-4ee7-bd05-e534a8f85f38/hand.glb"
+        >
+        </a-asset-item>
+
+        <a-entity
+          gltf-model="#planet"
+          position="2000 100 -500"
+          scale="15 15 -15"
+          animation="property: object3D.position.y; to: 40; dir: alternate; dur: 5000; loop: true"
+        ></a-entity>
+
+        <a-entity
+          gltf-model="#desert1"
+          position="10 -80 -4"
+          scale="1.5 1.5 -1.5"
+        ></a-entity>
+
+        <!--     hands     -->
+        <a-entity
+          gltf-model="#darwin"
+          position="500 -130 0"
+          scale="150 150 -150"
+        ></a-entity>
+        <a-entity
+          gltf-model="#jordan"
+          position="-500 -100 0"
+          scale="150 150 -150"
+        ></a-entity>
+        <a-entity
+          gltf-model="#john"
+          position="800 -50 600"
+          scale="150 150 -150"
+        ></a-entity>
+        <a-entity
+          gltf-model="#richard-hands2"
+          position="200 -100 -850"
+          rotation="0 180 0"
+          scale="150 150 -150"
+        ></a-entity>
+        <a-entity
+          gltf-model="#ikea-hand"
+          position="1400 -150 -100"
+          rotation="0 90 0"
+          scale="1000 1000 -1000"
+        ></a-entity>
+
+        <!--    in-game music    -->
+        <a-sound
+          id="ambienceSound"
+          sound="src: #ambience; loop: true"
+          position="0 0 0"
+        ></a-sound>
+
+        <!--     player movement -->
+        <a-entity
+          camera
+          look-controls
+          wasd-controls="acceleration: 500"
+        ></a-entity>
+
+        <a-sky src="#sky" scale="10 10 -10"></a-sky>
+      </a-scene>
+    </main>
+
+    <script>
+      var ambienceAudio = document.querySelector("#ambience");
+
+      // Play the audio when scene is loaded
+      document.querySelector("a-scene").addEventListener("loaded", function () {
+        ambienceAudio.play();
+      });
+
+      // Listen for audio ended event and restart playback
+      ambienceAudio.addEventListener("ended", function () {
+        this.currentTime = 0;
+        this.play();
+      });
+    </script>
+  </body>
+</html>
