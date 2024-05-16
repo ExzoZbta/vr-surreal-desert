@@ -13,4 +13,4 @@
     - If not using a headset, you can move using the WASD or arrow keys.
    
 ### **Homepage**
-  - ![Img of homepage](https://i.imgur.com/N1tzMZV.png)
+  ![Img of homepage](https://i.imgur.com/N1tzMZV.png)
